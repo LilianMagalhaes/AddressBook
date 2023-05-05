@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Contacts Management App</title>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <!--bootstrap-->
+    <script src="lib/bootstrap/bootstrap-5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap-5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <!--javascript-->
+    <script type="text/javascript" src="lib/jquery-3.6.3.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+  </head>
+
+  <body class=""> 
+<!--navbar begins--> 
+    <nav class="navbar-brand d-flex pl-3" id="app-header" href="#">
+      <section class="nav-container">
+        <img href="#" src="images/icons/phone-icon.png" alt="" id="app-icon"></img>
+        <h4 id="app-title" class="d-flex">HandyContacts</h4>
+      <div class="nav-btn-container">
+        <!-- Button trigger collapse category-->
+          <button class="btn p-0 border-0" id="filter-btn" 
+                  data-bs-toggle="collapse" data-bs-target="#collapse-category-content" 
+                  aria-expanded="false" aria-controls="collapse-category-content">
+                  <img class="border-0" src="images/icons/filter-icon.png" alt="" id="filter-icon"></img>
+          </button>
+
+        <!-- Button trigger modal addContacts -->
+        <button class="btn p-0 border-0" id="addContact-btn" type="button" 
+                data-bs-toggle="modal" data-bs-target="#static-addContact-content">
+          <img src="images/icons/add_circle-icon.png" alt="" id="addContact-icon"></img>
+        </button>
+      </div>
+      </section>
+    </nav>
+    <!--navbar ends-->  
+
+    <!--collapse-category begins-->
+    <div class="container-fluid">
+      <div class="collapse" id="collapse-category-content">
+        <ul class="navbar-nav list-choice-category" id="dropdown-menu">
+          <li><hr class="nav-divider"></li>
+          <!--<li><button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="collapse"></button></li>-->
+          <li class="nav-item d-flex align-items-center ms-3 gap-2 pt-3 py-2 choice-category" href="" value="0">
+            All categories</li>
+          <li class="nav-item d-flex align-items-center gap-2 py-2 choice-category" href="" value="1">
+            <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+            Family</li>
+          <li class="nav-item d-flex align-items-center gap-2 py-2 choice-category" href="" value="2">
+            <span class="d-inline-block bg-danger rounded-circle p-1"></span>
+            Friends</li>
+          <li class="nav-item d-flex align-items-center gap-2 py-2 choice-category" href="" value="3">
+            <span class="d-inline-block bg-warning rounded-circle p-1"></span>
+            Work</li>
+          <li class="nav-item d-flex align-items-center gap-2 py-2 choice-category" href="" value="4">
+            <span class="d-inline-block bg-success rounded-circle p-1" ></span>
+            Business</li>
+          <li><hr class="nav-divider"></li>
+          <li>
+            <form class="nav-item d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" id="searchInput" value="" aria-label="Search">
+              <button id="search-btn" class="btn btn-outline-light" type="button" value="teste">SEARCH</button>
+            </form>
+          </li></br>
+        </ul>
+      </div>
+    </div>
+    <!--collapse-category ends-->
+
+    <!--contacts list begins-->      
+    <div data-bs-spy="scroll" data-bs-smooth-scroll="true" class="scroll" id="container-list">
+      <section class="bg-body-tertiary"  id="show-contactsList">
+        <!--  HTML CONTACTS LIST (TO BE INSERTED BY THE SCRIPT.JS FILE)-->
+      </section>
+    </div>
+    <!--contacts list ends-->
+
+    <footer><small>Copright &#169; Lilian Magalhaes - Fevrier 2023</small></footer>
+
+    <!-------------MODALS--------------->
+    <!-- Modal addContacts begins-->
+    <div class="modal fade" id="static-addContact-content" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Ajouter noveau contact</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body bg-body-tertiary">
+
+            <!-- Formulaire Add -->
+            <form id="addContact-form">
+              <div class="form-floating mb-3">
+                <select class="form-select" id="input-category" aria-label="Floating label select example">
+                  <option selected value="default">Contact Type:</option>
+                  <option class="add-category" value="family">Family</option>
+                  <option class="add-category" value="friends">Friends</option>
+                  <option class="add-category" value="work">Work</option>
+                  <option class="add-category" value="Business">Business</option>
+                </select>
+                <label for="input-category"></label>
+              </div>
+              </br>
+
+              <div class="form-floating mb-3">
+                <select class="form-select" id="input-title" aria-label="Floating label select example">
+                  <option selected value="">Title:</option>
+                  <option class="add-title" value="Ms.">Ms.</option>
+                  <option class="add-title" value="Mr.">Mr.</option>
+                  <option class="add-title" value="Mrs.">Mrs.</option>
+                </select>
+                <label for="input-title"></label>
+              </div>
+              </br>
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="input-name_first" placeholder="First Name">
+                <label id="name_first" for="input-name_first">First Name</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="input-name_last" placeholder="First Name">
+                <label id="name_last" for="input-name_last">Last Name</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="input-phone" placeholder="(000)000-0000">
+                <label id="phone" for="input-phone">Phone number - (000)000-0000</label>
+              
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="input-email" placeholder="name@example.com">
+                <label id="email" for="input-email">Email address</label>
+              </div>
+
+              <hr class="nav-divider">
+
+              <p>Address:</p>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="input-number" placeholder="No.">
+                <label id="Number" for="input-number">No.</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="input-street" placeholder="Street name">
+                <label id="Number" for="input-street">Street name</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="input-city" placeholder="City">
+                <label id="province" for="input-city">City</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="input-province" placeholder="Provice/State">
+                <label id="country" for="input-province">Provice/State</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="input-country" placeholder="Country">
+                <label id="postalCode" for="input-country">Country</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="input-postalCode" placeholder="Postal code">
+                <label id="postalCode" for="input-postalCode">Postal code</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="input-birthday" placeholder="Birthday - YYYY-MM-DD">
+                <label id="birthday" for="input-birthday">Birthday - YYYY-MM-DD</label>
+              </div>
+              <hr class="nav-divider">
+              <p id="social-media">Social Media: </p>
+
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control socialMedia" id="input-facebook-id" placeholder="" disabled>
+                  <label id="facebook-id" for="input-facebook-id">
+                    <img class="form-icon" id="facebook-icon" src="images/icons/facebook-icon.png" alt=""></img>
+                  </label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control socialMedia" id="input-instagram-id" placeholder="" disabled>
+                  <label id="instagram-id" for="input-instagram-id">
+                    <img class="form-icon" id="instagram-icon" src="images/icons/instagram-icon.png" alt=""></img>
+                  </label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control socialMedia" id="input-linkedin-id" placeholder="" disabled>
+                  <label id="linkedin-id" for="input-linkedin-id">
+                    <img class="form-icon" id="linkedin-icon" src="images/icons/linkedin-icon.png" alt=""></img>
+                  </label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control socialMedia" id="input-twitter-id" placeholder="" disabled>
+                  <label id="twitter-id" for="input-twitter-id">
+                    <img class="form-icon me-5" id="twitter-icon" src="images/icons/twitter-icon.png" alt=""></img>
+                  </label>
+                </div> 
+              </div>
+            </form>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-light" id="cancel-btn" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-outline-light" id="addContact-submit" data-bs-dismiss="modal">Ajouter</button>
+          </div>
+          </div>
+        </div>
+      </div>
+    <!--Modal addContacts ends-->
+
+    <!-- Modal confirm delete contact begins-->
+      <div class="modal fade" id="modal-deleteContact" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal-deleteContactLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modal-deleteContactLabel">Delete Contact</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-body-tertiary id=modalDeletecontact">
+              <h6 class="text-center" >Are you sure you want to delete this contact?</h6> 
+            </div>
+            <div class="modal-footer bg-body-tertiary">
+              <button type="button" class="btn btn-outline-light bg-danger" data-bs-dismiss="modal">NO</button>
+              <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modal-successfullDeleted" id="confirmToDeleteContact">YES</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal confirm delete contact ends-->
+
+      <!-- Small Modal (show the contact was successfull deleted) begins-->
+      <div class="modal fade " id="modal-successfullDeleted" data-bs-backdrop="static" tabindex="-1" aria-labelledby="successfullDeletedLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="successfullDeletedLabel"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-body-tertiary">
+              <h6 class="text-center" >Contact was successfull deleted!</h6> 
+            </div>
+            <div class="modal-footer bg-body-tertiary">
+              <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal" id="btn-delete-ok">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </body>
+</html>
